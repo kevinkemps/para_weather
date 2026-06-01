@@ -1,17 +1,12 @@
 type WindyEmbedProps = {
-  spotId: string;
+  title: string;
+  src: string;
+  className?: string;
+  loading?: 'eager' | 'lazy';
 };
 
-export function WindyEmbed({ spotId }: WindyEmbedProps) {
-  const params = new URLSearchParams({
-    spotId,
-  });
-
+export function WindyEmbed({ title, src, className, loading = 'lazy' }: WindyEmbedProps) {
   return (
-    <iframe
-      title={`Windy forecast for ${spotId}`}
-      loading="lazy"
-      src={`https://embed.windy.com/?${params.toString()}`}
-    />
+    <iframe title={title} className={className} loading={loading} src={src} frameBorder="0" />
   );
 }
