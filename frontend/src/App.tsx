@@ -2,12 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 
 import { BoulderWeather } from './pages/BoulderWeather';
 import { LookoutWeather } from './pages/LookoutWeather';
+import { SteamboatWeather } from './pages/SteamboatWeather';
 
 const heroImageUrl = '/photos/grad_flight.jpg';
 const boulderImageUrl = '/photos/boulder.jpg';
 const lookoutImageUrl = '/photos/lookout.jpg';
+const steamboatImageUrl = '/photos/steamboat.jpg';
 
-type Route = 'home' | 'boulder' | 'lookout';
+type Route = 'home' | 'boulder' | 'lookout' | 'steamboat';
 
 function getRoute(): Route {
   if (typeof window === 'undefined') {
@@ -18,13 +20,23 @@ function getRoute(): Route {
     return 'boulder';
   }
 
-  return window.location.pathname.startsWith('/weather/lookout') ? 'lookout' : 'home';
+  if (window.location.pathname.startsWith('/weather/lookout')) {
+    return 'lookout';
+  }
+
+  return window.location.pathname.startsWith('/weather/steamboat') ? 'steamboat' : 'home';
 }
 
 export default function App() {
   const route = getRoute();
   const heroImage =
-    route === 'boulder' ? boulderImageUrl : route === 'lookout' ? lookoutImageUrl : heroImageUrl;
+    route === 'boulder'
+      ? boulderImageUrl
+      : route === 'lookout'
+        ? lookoutImageUrl
+        : route === 'steamboat'
+          ? steamboatImageUrl
+          : heroImageUrl;
   const [isWeatherOpen, setIsWeatherOpen] = useState(false);
   const weatherMenuRef = useRef<HTMLDetailsElement | null>(null);
 
@@ -90,6 +102,12 @@ export default function App() {
                   >
                     Lookout
                   </a>
+                  <a
+                    className="mt-1 block rounded-lg px-3 py-2 text-white/90 transition hover:bg-white/10"
+                    href="/weather/steamboat"
+                  >
+                    Steamboat
+                  </a>
                 </div>
               </details>
             </nav>
@@ -99,6 +117,8 @@ export default function App() {
             <BoulderWeather />
           ) : route === 'lookout' ? (
             <LookoutWeather />
+          ) : route === 'steamboat' ? (
+            <SteamboatWeather />
           ) : (
             <section className="flex flex-1 items-center px-4 pb-16 sm:px-6 lg:px-10">
               <div className="max-w-2xl" />

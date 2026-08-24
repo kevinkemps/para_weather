@@ -28,7 +28,7 @@ const raspWindgramUrl = 'https://flymarshall.com/co-4k/show_windgram.php?site=Mt
 const raspSiteUrl = 'https://flymarshall.com/co-4k/';
 const bigPictureUrl =
   'https://embed.windy.com/embed2.html?lat=37.719&lon=-101.250&zoom=3&level=surface&overlay=wind&menu=&message=true&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=&detailLat=39.893&detailLon=-105.219&metricWind=mph&metricTemp=%C2%B0F&radarRange=-1';
-
+const skewTUrl = 'https://flymarshall.com/co-4k/show_sounding.php?site=sounding2'
 const sectionCardClass =
   'overflow-hidden rounded-3xl border border-white/15 bg-black/40 shadow-2xl backdrop-blur-sm';
 
@@ -172,6 +172,13 @@ export function LookoutWeather() {
               title="Colorado RASP"
               className="h-[70vh] min-h-[24rem] w-full"
               src={raspSiteUrl}
+              loading="lazy"
+              frameBorder="0"
+            />
+            <iframe
+              title="skew T"
+              className="h-[70vh] min-h-[24rem] w-full"
+              src={skewTUrl}
               loading="lazy"
               frameBorder="0"
             />

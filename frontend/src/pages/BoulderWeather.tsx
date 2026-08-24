@@ -19,7 +19,7 @@ const overdevelopmentUrl =
   'https://embed.windy.com/embed2.html?lat=40.051&lon=-105.110&detailLat=40.014&detailLon=-105.285&width=1050&height=450&zoom=8&level=surface&overlay=thunder&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=&metricWind=mph&metricTemp=%C2%B0F&radarRange=-1';
 const raspWindgramUrl = 'https://flymarshall.com/co-4k/show_windgram.php?site=Boulder&day=0';
 const raspSiteUrl = 'https://flymarshall.com/co-4k/';
-
+const skewTUrl = 'https://flymarshall.com/co-4k/show_sounding.php?site=sounding1'
 const sectionCardClass =
   'overflow-hidden rounded-3xl border border-white/15 bg-black/40 shadow-2xl backdrop-blur-sm';
 
@@ -151,6 +151,13 @@ export function BoulderWeather() {
               title="Colorado RASP"
               className="h-[70vh] min-h-[24rem] w-full"
               src={raspSiteUrl}
+              loading="lazy"
+              frameBorder="0"
+            />
+            <iframe
+              title="SkewT"
+              className="h-[70vh] min-h-[24rem] w-full"
+              src={skewTUrl}
               loading="lazy"
               frameBorder="0"
             />
